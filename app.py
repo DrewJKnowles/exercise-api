@@ -5,6 +5,7 @@ import os
 
 # Init App 
 app = Flask(__name__)
+app.app_context()
 # Sets the base path
 basedir = os.path.abspath(os.path.dirname(__file__))
 # Set the database location
@@ -12,6 +13,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+
 
 ma = Marshmallow(app)
 
@@ -31,8 +33,8 @@ class ExerciseSchema(ma.Schema):
         fields = ('id', 'name', 'description', 'howToDescription')
         
 # Init Schema 
-exercise_schema = ExerciseSchema(strict=True)    
-exercises_schema = ExerciseSchema(many=True, strict=True)
+exercise_schema = ExerciseSchema()    
+exercises_schema = ExerciseSchema(many=True)
 
 
 # class MuscleGroups(db.Model):
