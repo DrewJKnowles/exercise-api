@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+from marshmallow import Schema
 import os
 
 # Init App 
@@ -26,13 +27,13 @@ class Excercise(db.Model):
         self.description = description
         self.gifLocation = howToDescription
 
-class ExerciseSchema(ma.Schema):
+class ExerciseSchema(Schema):
     class Meta:
         fields = ('id', 'name', 'description', 'howToDescription')
         
 # Init Schema 
-exercise_schema = ExerciseSchema(strict=True)    
-exercises_schema = ExerciseSchema(many=True, strict=True)
+exercise_schema = ExerciseSchema()    
+exercises_schema = ExerciseSchema(many=True)
 
 
 # class MuscleGroups(db.Model):
