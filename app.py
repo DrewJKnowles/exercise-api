@@ -1,12 +1,19 @@
+''' Import Packages '''
+import os
 from flask import Flask, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-import os
+from marshmallow import Schema
+from dotenv import load_dotenv
+
+''' Load and Kick Python '''
+load_dotenv()
+
 
 # Init App 
 app = Flask(__name__)
 # Sets the base path
-basedir = os.path.abspath(os.path.dirname(__file__))
+basedir = os.path.abspath(os.path.dirname(os.environ.get("DATABASE_LOCATION")))
 # Set the database location
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -26,13 +33,13 @@ class Excercise(db.Model):
         self.description = description
         self.gifLocation = howToDescription
 
-class ExerciseSchema(ma.Schema):
+class ExerciseSchema(Schema):
     class Meta:
         fields = ('id', 'name', 'description', 'howToDescription')
         
 # Init Schema 
-exercise_schema = ExerciseSchema(strict=True)    
-exercises_schema = ExerciseSchema(many=True, strict=True)
+exercise_schema = ExerciseSchema()    
+exercises_schema = ExerciseSchema(many=True)
 
 
 # class MuscleGroups(db.Model):
