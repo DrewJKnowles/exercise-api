@@ -68,11 +68,9 @@ exercises_schema = ExerciseSchema(many=True)
 #     def __init__(self, exercise_id, description, url):
 #         self.exercise_id = exercise_id
 #         self.description = description
-#         self.url = url
+#         self.url = url        
+      
 
-@app.route('/', methods=['GET'])
-def get():
-    return jsonify({'msg': 'helloWorld'})
 
 
 # Run Server

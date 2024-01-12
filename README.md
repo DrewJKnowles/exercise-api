@@ -3,3 +3,6 @@
 
 -> REST API with Flask and SQL Alchemy  
 https://www.youtube.com/watch?v=PTZiDnuC86g&t=128s
+
+How to run 
+python app.py
