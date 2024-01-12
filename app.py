@@ -9,6 +9,7 @@ from dotenv import load_dotenv
 ''' Load and Kick Python '''
 load_dotenv()
 
+from routes import *
 
 # Init App 
 app = Flask(__name__)
@@ -17,6 +18,7 @@ basedir = os.path.abspath(os.path.dirname(os.environ.get("DATABASE_LOCATION")))
 # Set the database location
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.register_blueprint(routes)
 
 db = SQLAlchemy(app)
 
