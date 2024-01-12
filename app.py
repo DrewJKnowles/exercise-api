@@ -1,6 +1,6 @@
 ''' Import Packages '''
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow import Schema
@@ -62,9 +62,7 @@ exercises_schema = ExerciseSchema(many=True)
 #         self.description = description
 #         self.url = url        
       
-@app.route('/', methods=['GET'])
-def get():
-    return jsonify({'msg': 'helloWorld'})
+
 
 # Run Server
 if __name__ == '__main__':
