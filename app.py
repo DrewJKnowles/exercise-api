@@ -1,6 +1,6 @@
 ''' Import Packages '''
 import os
-from flask import Flask, jsonify
+from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from marshmallow import Schema
@@ -11,6 +11,7 @@ load_dotenv()
 
 from routes import *
 
+
 # Init App
 app = Flask(__name__)
 # Sets the base path
@@ -20,6 +21,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + \
     os.path.join(basedir, 'db.sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.register_blueprint(routes)
+
 
 db = SQLAlchemy(app)
 ma = Marshmallow(app)    
@@ -55,6 +57,7 @@ exercises_schema = ExerciseSchema(many=True)
 # Build DB Tables and Information 
 with app.app_context():
     db.create_all()
+
 # Run Server
 if __name__ == '__main__':
     app.run(debug=True)
